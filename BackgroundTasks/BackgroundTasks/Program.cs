@@ -1,7 +1,12 @@
+using Domain.BackgroundTasks.Service;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Add Service
+builder.Services.AddHostedService<NewPostEmailToAllUsersTimedHostedService>();
 
 var app = builder.Build();
 

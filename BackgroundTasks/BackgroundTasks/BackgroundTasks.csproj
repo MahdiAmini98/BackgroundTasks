@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Domain.BackgroundTasks\Domain.BackgroundTasks.csproj" />
+  </ItemGroup>
+
 </Project>
