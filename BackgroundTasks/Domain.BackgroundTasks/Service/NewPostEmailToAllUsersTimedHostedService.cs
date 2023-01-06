@@ -56,7 +56,7 @@ namespace Domain.BackgroundTasks.Service
 
         private TimeSpan getJobRunDelay(string jobStartTime)
         {
-            TimeSpan scheduledParsedTime = getScheduledParsedTime(jobStartTime);
+            TimeSpan scheduledParsedTime = getScheduledParsedTime(jobStartTime); 
             TimeSpan curentTimeOfTheDay = TimeSpan.Parse(DateTime.Now.TimeOfDay.ToString("hh\\:mm"));
             TimeSpan delayTime = scheduledParsedTime >= curentTimeOfTheDay
                 ? scheduledParsedTime - curentTimeOfTheDay
