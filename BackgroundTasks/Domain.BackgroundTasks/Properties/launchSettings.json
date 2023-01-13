@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Domain.BackgroundTasks": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:2669;http://localhost:2670"
+    }
+  }
+}
