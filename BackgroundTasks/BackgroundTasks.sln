@@ -5,11 +5,17 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EndPoint.BackGroundTasks", "EndPoint.BackGroundTasks", "{600BABF0-ACBA-45AA-917E-BE36B56B398B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackgroundTasks", "BackgroundTasks\BackgroundTasks.csproj", "{B76843A4-D95B-444D-9E36-0CAC3CC8845A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackgroundTasks", "BackgroundTasks\BackgroundTasks.csproj", "{B76843A4-D95B-444D-9E36-0CAC3CC8845A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain.BackgroundTasks", "Domain.BackgroundTasks", "{F959121A-F51B-4D13-8566-22C8C17EF0EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.BackgroundTasks", "Domain.BackgroundTasks\Domain.BackgroundTasks.csproj", "{48F41BFC-8212-46AB-BCE6-47E0EAEFF444}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.BackgroundTasks", "Domain.BackgroundTasks\Domain.BackgroundTasks.csproj", "{48F41BFC-8212-46AB-BCE6-47E0EAEFF444}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HangffireProject", "HangffireProject", "{F382E378-D895-4C88-A8D0-D23843DF551F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EndPoint.Hangfire", "EndPoint.Hangfire", "{13ECF64B-89BE-4370-B358-B09F1A9E54CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangfire", "Hangfire\Hangfire.csproj", "{3E152025-0FE5-4E37-A8AD-8E0542960DB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +31,10 @@ Global
 		{48F41BFC-8212-46AB-BCE6-47E0EAEFF444}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48F41BFC-8212-46AB-BCE6-47E0EAEFF444}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48F41BFC-8212-46AB-BCE6-47E0EAEFF444}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E152025-0FE5-4E37-A8AD-8E0542960DB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E152025-0FE5-4E37-A8AD-8E0542960DB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E152025-0FE5-4E37-A8AD-8E0542960DB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E152025-0FE5-4E37-A8AD-8E0542960DB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +42,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B76843A4-D95B-444D-9E36-0CAC3CC8845A} = {600BABF0-ACBA-45AA-917E-BE36B56B398B}
 		{48F41BFC-8212-46AB-BCE6-47E0EAEFF444} = {F959121A-F51B-4D13-8566-22C8C17EF0EF}
+		{13ECF64B-89BE-4370-B358-B09F1A9E54CD} = {F382E378-D895-4C88-A8D0-D23843DF551F}
+		{3E152025-0FE5-4E37-A8AD-8E0542960DB1} = {13ECF64B-89BE-4370-B358-B09F1A9E54CD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8EC707E7-E9E7-46AA-A8B4-B73811B38142}
