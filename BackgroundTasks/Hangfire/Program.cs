@@ -1,10 +1,11 @@
-using Hangfire.Data;
+﻿using Hangfire.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Hangfire;
 using Hangfire.SqlServer;
 using Hangfire.Models.Entities;
 using Hangfire.Infrastructures.Service;
+using Hangfire.HangfireAuthorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,10 +15,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddDefaultUI()
+    .AddDefaultTokenProviders()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddRazorPages();
 
 #region Hangfire
 
@@ -64,5 +67,16 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+
+//Middleware-Hangfire
+app.UseHangfireDashboard(pathMatch: "/hangfire", options: new DashboardOptions
+{
+    Authorization = new[]
+    {
+        new HangfireAuthorizationFiltercs(),
+    },
+
+    DashboardTitle = "داشبورد تسک های پس زمینه ",
+});
 
 app.Run();
