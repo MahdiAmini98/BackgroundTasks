@@ -6,6 +6,7 @@ using Hangfire.SqlServer;
 using Hangfire.Models.Entities;
 using Hangfire.Infrastructures.Service;
 using Hangfire.HangfireAuthorization;
+using Hangfire.HangfireHosted;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,8 @@ builder.Services.AddIdentity<User, IdentityRole>(options => options.SignIn.Requi
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
+//Add Config and Register IHostedService For RecurringJob  
+//builder.Services.AddHostedService<StartRecurringJob>();
 #region Hangfire
 
 //Configuration For Hangfire
@@ -46,6 +49,9 @@ builder.Services.AddSingleton<EmailService>();
 
 var app = builder.Build();
 
+//Set ApplicationLifeTime For RecurringJob
+
+app.Lifetime.ApplicationStarted.Register(RecurringJob);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -83,3 +89,10 @@ app.UseHangfireDashboard(pathMatch: "/hangfire", options: new DashboardOptions
 });
 
 app.Run();
+
+#region RecurringJob Method
+void RecurringJob()
+{
+    Hangfire.RecurringJob.AddOrUpdate<EmailService>("Article-LifeTimeApp", p => p.SendArticlesToUsers("Classicus.ma@gmail.com"), Cron.Minutely());
+}
+#endregion

@@ -1,4 +1,6 @@
-﻿namespace Hangfire.Infrastructures.Service
+﻿using System;
+
+namespace Hangfire.Infrastructures.Service
 {
     public class EmailService
     {
@@ -22,6 +24,15 @@
             Random random = new Random();
             
             _logger.LogInformation($"Discount Code {random.Next(500, 50000)} send to email {email}");
+        }
+
+        public void SendArticlesToUsers(string email)
+        {
+            Thread.Sleep(6000);
+            Random random = new Random();
+
+            _logger.LogInformation($"Article Number {random.Next(85, 8500)} send to email {email}");
+
         }
     }
 }

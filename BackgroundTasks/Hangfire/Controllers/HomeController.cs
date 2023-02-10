@@ -39,6 +39,24 @@ namespace Hangfire.Controllers
             BackgroundJob.Schedule<EmailService>(p => p.SendDiscountCode("classicus.ma@gmail.com"), TimeSpan.FromMinutes(1));
             return RedirectToAction("Index");
         }
+
+        public IActionResult RecurringJob()
+        {
+            Hangfire.RecurringJob.AddOrUpdate<EmailService>("Article-1", p => p.SendArticlesToUsers("Classicus.ma@gmail.com"), Cron.Minutely()); 
+            return RedirectToAction("Index");
+        }         
+
+        public IActionResult DeleteRecurringJob()
+        {
+            Hangfire.RecurringJob.RemoveIfExists("Article-1");
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult RunRecurringJob()
+        {
+            Hangfire.RecurringJob.TriggerJob("Article-1");
+            return RedirectToAction("Index");
+        }
         #endregion
 
         public IActionResult Privacy()
