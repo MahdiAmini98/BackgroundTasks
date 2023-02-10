@@ -15,5 +15,13 @@
             _logger.LogInformation($"An Welcome email was sent to {email}");
 
         }
+
+        public void SendDiscountCode(string email)
+        {
+            Thread.Sleep(3000);
+            Random random = new Random();
+            
+            _logger.LogInformation($"Discount Code {random.Next(500, 50000)} send to email {email}");
+        }
     }
 }

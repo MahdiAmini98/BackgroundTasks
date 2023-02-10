@@ -69,6 +69,7 @@ namespace Hangfire.Controllers
             //type2
             BackgroundJob.Enqueue<SmsService>(p => p.SendWelcomeSMS(user.PhoneNumber));
             BackgroundJob.Enqueue<EmailService>(p => p.SendWelcomeEmail(user.Email));
+            BackgroundJob.Schedule<EmailService>(p => p.SendDiscountCode(user.Email), TimeSpan.FromDays(2));
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 

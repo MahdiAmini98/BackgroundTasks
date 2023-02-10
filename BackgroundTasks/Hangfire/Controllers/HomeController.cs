@@ -34,12 +34,11 @@ namespace Hangfire.Controllers
             return RedirectToAction("Index");
         }
 
-        //public IActionResult DelayedJob()
-        //{
-            
-
-        //    return RedirectToAction("Index");
-        //}
+        public IActionResult DelayedJob()
+        {
+            BackgroundJob.Schedule<EmailService>(p => p.SendDiscountCode("classicus.ma@gmail.com"), TimeSpan.FromMinutes(1));
+            return RedirectToAction("Index");
+        }
         #endregion
 
         public IActionResult Privacy()

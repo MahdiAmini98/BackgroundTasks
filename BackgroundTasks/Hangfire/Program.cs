@@ -32,7 +32,10 @@ config.SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
 .UseRecommendedSerializerSettings()
 .UseSqlServerStorage(builder.Configuration.GetConnectionString("HangfireConnection")));
 //Add HangfireServer Services
-builder.Services.AddHangfireServer();
+builder.Services.AddHangfireServer(options =>
+{
+    options.SchedulePollingInterval = TimeSpan.FromMinutes(1);
+});
 
 #endregion
 
