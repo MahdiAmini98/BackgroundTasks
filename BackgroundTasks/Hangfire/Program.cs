@@ -47,6 +47,7 @@ builder.Services.AddHangfireServer(options =>
 builder.Services.AddSingleton<SmsService>();
 builder.Services.AddSingleton<EmailService>();
 builder.Services.AddSingleton<ISmsIocService, SmsIocService>();
+builder.Services.AddSingleton<IChangeDisplayNameJob, ChangeDisplayNameJob>();
 #endregion
 
 //Global Retray Job Configuration
@@ -92,6 +93,9 @@ app.UseHangfireDashboard(pathMatch: "/hangfire", options: new DashboardOptions
     },
 
     DashboardTitle = "داشبورد تسک های پس زمینه ",
+
+    //Change DisplayName Jobs
+    //DisplayNameFunc = (ctx, job) => $"{job.Type.Name}-->{job.Method.Name} : {job.Method.IsPublic}",
 });
 
 app.Run();
