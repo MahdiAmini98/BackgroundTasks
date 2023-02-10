@@ -7,6 +7,7 @@ using Hangfire.Models.Entities;
 using Hangfire.Infrastructures.Service;
 using Hangfire.HangfireAuthorization;
 using Hangfire.HangfireHosted;
+using Hangfire.Infrastructures.Abstraction;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +46,7 @@ builder.Services.AddHangfireServer(options =>
 #region Service
 builder.Services.AddSingleton<SmsService>();
 builder.Services.AddSingleton<EmailService>();
+builder.Services.AddSingleton<ISmsIocService, SmsIocService>();
 #endregion
 
 var app = builder.Build();
