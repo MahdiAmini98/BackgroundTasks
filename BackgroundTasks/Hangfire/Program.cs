@@ -8,6 +8,7 @@ using Hangfire.Infrastructures.Service;
 using Hangfire.HangfireAuthorization;
 using Hangfire.HangfireHosted;
 using Hangfire.Infrastructures.Abstraction;
+using Hangfire.Dashboard;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -96,6 +97,9 @@ app.UseHangfireDashboard(pathMatch: "/hangfire", options: new DashboardOptions
 
     //Change DisplayName Jobs
     //DisplayNameFunc = (ctx, job) => $"{job.Type.Name}-->{job.Method.Name} : {job.Method.IsPublic}",
+
+    //ReadOnly Dashboard
+   // IsReadOnlyFunc = (DashboardContext context) => true 
 });
 
 app.Run();
