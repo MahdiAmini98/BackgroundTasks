@@ -49,6 +49,10 @@ builder.Services.AddSingleton<EmailService>();
 builder.Services.AddSingleton<ISmsIocService, SmsIocService>();
 #endregion
 
+//Global Retray Job Configuration
+GlobalJobFilters.Filters.Add(new AutomaticRetryAttribute { Attempts = 2, DelaysInSeconds = new[]{ 10, 5 } });
+
+
 var app = builder.Build();
 
 //Set ApplicationLifeTime For RecurringJob

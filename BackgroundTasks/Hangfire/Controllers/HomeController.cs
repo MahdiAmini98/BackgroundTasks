@@ -74,6 +74,12 @@ namespace Hangfire.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public IActionResult CreateException()
+        {
+            BackgroundJob.Enqueue<IExceptionJob>(p => p.RetriesJob());
+            return RedirectToAction("Index");
+        }
         #endregion
 
         public IActionResult Privacy()
