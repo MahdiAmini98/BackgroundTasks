@@ -1,4 +1,5 @@
-﻿using Hangfire.Infrastructures.Service;
+﻿using Hangfire.Infrastructures.Abstraction;
+using Hangfire.Infrastructures.Service;
 using Hangfire.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -55,6 +56,22 @@ namespace Hangfire.Controllers
         public IActionResult RunRecurringJob()
         {
             Hangfire.RecurringJob.TriggerJob("Article-1");
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult ContinuationsJob()
+        {
+          var job_Id =  BackgroundJob.Enqueue<BackupDBService>(p => p.BackupDB());
+            BackgroundJob.ContinueJobWith<BackupDBService>(job_Id, p => p.RestoreDB(),JobContinuationOptions.OnlyOnSucceededState);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult IOCSms()
+        {
+            BackgroundJob.Enqueue<ISmsIocService>(p => p.IrancellSms("09220705761"));
+            BackgroundJob.Enqueue<ISmsIocService>(p => p.HamrahAvalSms("09220705761"));
+            BackgroundJob.Enqueue<ISmsIocService>(p => p.RightelSms("09220705761"));
+
             return RedirectToAction("Index");
         }
         #endregion
