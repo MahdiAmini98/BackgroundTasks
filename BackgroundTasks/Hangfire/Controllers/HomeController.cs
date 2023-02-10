@@ -1,4 +1,5 @@
-﻿using Hangfire.Models;
+﻿using Hangfire.Infrastructures.Service;
+using Hangfire.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,16 +8,39 @@ namespace Hangfire.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly SmsService _smsService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, SmsService smsService)
         {
             _logger = logger;
+            _smsService = smsService;
         }
 
         public IActionResult Index()
         {
+
+            //BackgroundJob.Enqueue(methodCall:() => _smsService.SendWelcomeSMS("09220705761"));
+            //BackgroundJob.Enqueue<SmsService>(p => p.SendWelcomeSMS("09220705761"));
             return View();
         }
+
+        #region Jobs
+        
+        public IActionResult FireAndForgetJob()
+        {
+
+            //BackgroundJob.Enqueue(methodCall:() => _smsService.SendWelcomeSMS("09220705761"));
+            BackgroundJob.Enqueue<SmsService>(p => p.SendWelcomeSMS("09220705761"));
+            return RedirectToAction("Index");
+        }
+
+        //public IActionResult DelayedJob()
+        //{
+            
+
+        //    return RedirectToAction("Index");
+        //}
+        #endregion
 
         public IActionResult Privacy()
         {

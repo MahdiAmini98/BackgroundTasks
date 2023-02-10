@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HangffireProject", "Hangffi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EndPoint.Hangfire", "EndPoint.Hangfire", "{13ECF64B-89BE-4370-B358-B09F1A9E54CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangfire", "Hangfire\Hangfire.csproj", "{3E152025-0FE5-4E37-A8AD-8E0542960DB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hangfire", "Hangfire\Hangfire.csproj", "{3E152025-0FE5-4E37-A8AD-8E0542960DB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
