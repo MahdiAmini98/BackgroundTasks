@@ -10,14 +10,16 @@ namespace Hangfire.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _singInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SmsService _smsService;
         private readonly EmailService _emailService;
-        public AccountController(UserManager<User> userManager, SignInManager<User> singInManager, EmailService emailService, SmsService smsService)
+        public AccountController(UserManager<User> userManager, SignInManager<User> singInManager, EmailService emailService, SmsService smsService, RoleManager<IdentityRole> roleManager)
         {
             _singInManager = singInManager;
             _userManager = userManager;
             _emailService = emailService;
             _smsService = smsService;
+            _roleManager = roleManager;
         }
         public IActionResult Index()
         {
@@ -59,6 +61,14 @@ namespace Hangfire.Controllers
             }
             _emailService.SendWelcomeEmail(model.Email);
             _smsService.SendWelcomeSMS(model.PhoneNumber);
+
+            //job fire and forget for send sms and email after Register
+            //type1
+            //BackgroundJob.Enqueue(methodCall: () => _smsService.SendWelcomeSMS("09220705761"));
+
+            //type2
+            BackgroundJob.Enqueue<SmsService>(p => p.SendWelcomeSMS(user.PhoneNumber));
+            BackgroundJob.Enqueue<EmailService>(p => p.SendWelcomeEmail(user.Email));
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
@@ -90,6 +100,19 @@ namespace Hangfire.Controllers
             }
 
             return RedirectToAction(nameof(HomeController.Index), "Home");
+        }
+
+        public async Task AddUserRole()
+        {
+            await _roleManager.CreateAsync(new IdentityRole
+            {
+                Name = "Hangfire"
+            });
+
+            var user = await _userManager.FindByEmailAsync("classicus.ma@gmail.com");
+
+            if (user is not null)
+            await _userManager.AddToRoleAsync(user, "Hangfire");
         }
     }
 }
