@@ -43,6 +43,9 @@ builder.Services.AddHangfireServer(options =>
 
     //create New Queue
     options.Queues = new[] { "default", "create_queue1" };
+
+    //count Worker
+    options.WorkerCount = Environment.ProcessorCount * 5;
 });
 
 #endregion
