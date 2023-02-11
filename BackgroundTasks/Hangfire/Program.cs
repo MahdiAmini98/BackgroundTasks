@@ -40,6 +40,9 @@ config.SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
 builder.Services.AddHangfireServer(options =>
 {
     options.SchedulePollingInterval = TimeSpan.FromMinutes(1);
+
+    //create New Queue
+    options.Queues = new[] { "default", "create_queue1" };
 });
 
 #endregion
@@ -49,6 +52,7 @@ builder.Services.AddSingleton<SmsService>();
 builder.Services.AddSingleton<EmailService>();
 builder.Services.AddSingleton<ISmsIocService, SmsIocService>();
 builder.Services.AddSingleton<IChangeDisplayNameJob, ChangeDisplayNameJob>();
+builder.Services.AddSingleton<ICreateQueue, CreateQueue>();
 #endregion
 
 //Global Retray Job Configuration

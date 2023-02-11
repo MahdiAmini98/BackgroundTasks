@@ -86,6 +86,12 @@ namespace Hangfire.Controllers
             BackgroundJob.Enqueue<IChangeDisplayNameJob>(p => p.ChangeDisplayNameJob());
             return RedirectToAction("Index");
         }
+
+        public IActionResult CreateQueue()
+        {
+            BackgroundJob.Enqueue<ICreateQueue>(p => p.CreateQueue());
+            return RedirectToAction("Index");
+        }
         #endregion
 
         public IActionResult Privacy()
