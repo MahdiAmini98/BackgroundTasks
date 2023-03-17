@@ -1,0 +1,39 @@
+﻿@model Hangfire.Models.Entities.SendMail
+
+@{
+    ViewData["Title"] = "Detail";
+}
+<div class="card" style=" text-align:right; direction:rtl;">
+    <div class="card-body">
+        <h5 class="card-title">
+        </h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+            ارسال ایمیل به همه کاربران
+        </h6>
+        <p class="card-text">
+            <div class="">
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>موضوع</th>
+                            <th>وضعیت</th>
+                            <th>زمان شروع</th>
+                            <th>زمان اتمام</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@Model.Id</td>
+                            <td>@Model.Subject</td>
+                            <td>@Model.SendMailStatus</td>
+                            <td>@Model.StartDate</td>
+                            <td>@Model.EndDate</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </p>
+    </div>
+</div>
+<a asp-action="Index">Back to List</a>

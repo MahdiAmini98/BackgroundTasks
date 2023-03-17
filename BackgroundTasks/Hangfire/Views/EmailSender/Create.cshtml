@@ -1,0 +1,44 @@
+﻿@model Hangfire.Models.Dto.MailDto
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="card" style="text-align:right; direction:rtl;">
+    <div class="card-body">
+        <h5 class="card-title">
+            افزودن
+        </h5>
+        <h6 class="card-subtitle mb-2 text-muted mt-3">
+          افزودن ایمیل جدید
+        </h6>
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Create">
+                    <div class="form-group">
+                        <label asp-for="Subject" class="control-label"></label>
+                        <input asp-for="Subject" class="form-control" />
+                        <span asp-validation-for="Subject" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Body" class="control-label"></label>
+                        <input asp-for="Body" class="form-control" />
+                        <span asp-validation-for="Body" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-5">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

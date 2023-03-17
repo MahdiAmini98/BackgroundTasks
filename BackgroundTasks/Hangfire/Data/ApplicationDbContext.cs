@@ -10,5 +10,7 @@ namespace Hangfire.Data
             : base(options)
         {
         }
+
+        public DbSet<SendMail> SendMail { get; set; }
     }
 }

@@ -56,6 +56,7 @@ builder.Services.AddSingleton<EmailService>();
 builder.Services.AddSingleton<ISmsIocService, SmsIocService>();
 builder.Services.AddSingleton<IChangeDisplayNameJob, ChangeDisplayNameJob>();
 builder.Services.AddSingleton<ICreateQueue, CreateQueue>();
+builder.Services.AddScoped<IEmailSender, EmailSender>();
 #endregion
 
 //Global Retray Job Configuration
